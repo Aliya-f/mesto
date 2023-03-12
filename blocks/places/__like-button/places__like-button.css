@@ -1,0 +1,24 @@
+.places__like-button {
+    background: url(../../../images/Group.svg);
+    width: 22px;
+    height: 19px;
+    border: 0;
+    cursor: pointer;
+    transition: opacity 0.2s ease-in-out;
+}
+    
+.places__like-button:hover {
+    opacity: 0.5;
+}
+    
+/* закрасить сердечко черным
+.places__like-button:active {
+    background: url(../../../images/like_active.svg);
+    opacity: 1;
+}
+   или присвоить класс через js
+.like-button_type_active {
+    background: url(../../../images/like_active.svg);
+    opacity: 1;
+}
+*/
