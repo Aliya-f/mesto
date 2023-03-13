@@ -4,4 +4,11 @@
     height: 120px;
     object-fit: cover;
     transition: opacity .2s ease-in-out;
+    margin-right: 30px;
+}  
+
+@media screen and (max-width: 1024px) {
+    .profile__photo {
+        margin: 0;
+    }
 }

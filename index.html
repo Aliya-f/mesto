@@ -1,7 +1,6 @@
 <!DOCTYPE html>
 <html lang="ru">
 <head>
-  <link rel="stylesheet" href="vendor/normalize.css">
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <link rel="stylesheet" href="pages/index.css">
@@ -21,80 +20,68 @@
   <section class="profile">
     <div class="profile__card">
 
-      <div class="profile__avatar">
-        <img src="images/image.jpg"
-          alt="Фото профиля."
-          class="profile__photo">
-      </div>
+
+      <img src="images/image.jpg"
+        alt="Фото профиля."
+        class="profile__photo">
+
 
       <div class="profile__info">
         <div class="profile__name">
           <h1 class="profile__name-text">Жак-Ив Кусто</h1>
-          <button class="profile__edit-button" type="button"></button>
+          <button class="profile__edit-button" type="button" aria-label="Редактировать"></button>
         </div>
         <p class="profile__description">Исследователь океана</p>
       </div>
     </div>
 
-    <button class="profile__add-button" type="button"></button>
+    <button class="profile__add-button" type="button" aria-label="Добавить"></button>
   </section>
 
 
-  <section class="places" aria-label="места.">
+  <section class="places" aria-label="места">
     <ul class="places__items">
         <li class="places__item">
             <img class="places__img" src="./images/kirill-pershin-1088404-unsplash-1.jpg" alt="Замок Карачаевска">
             <div class="places__content">
-                <h2 class="places__title">Карачаевск</h2>
-                <span class="places__like">
-                  <button class="places__like-button" type="button"></button>
-                </span>
+              <h2 class="places__title">Карачаевск</h2>
+                <button class="places__like-button" type="button" aria-label="Нравится"></button>
             </div>
 
         </li>
         <li class="places__item">
             <img class="places__img" src="./images/place-karelia.jpg" alt="Карелия">
             <div class="places__content">
-                <h2 class="places__title">Карелия</h2>
-                <span class="places__like">
-                  <button class="places__like-button" type="button"></button>
-                </span>
+              <h2 class="places__title">Карелия</h2>
+                <button class="places__like-button" type="button" aria-label="Нравится"></button>
             </div>
         </li>
         <li class="places__item">
             <img class="places__img" src="./images/photo-grid-sochi.jpg" alt="Сочи">
             <div class="places__content">
-                <h2 class="places__title">Сочи</h2>
-                <span class="places__like">
-                  <button class="places__like-button" type="button"></button>
-                </span>
+              <h2 class="places__title">Сочи</h2>
+                <button class="places__like-button" type="button" aria-label="Нравится"></button>
             </div>
         </li>
         <li class="places__item">
             <img class="places__img" src="./images/photo-grid-kamchatka-2.jpg" alt="Камчатка">
             <div class="places__content">
-                <h2 class="places__title">Камчатка</h2>
-                <span class="places__like">
-                  <button class="places__like-button" type="button"></button>
-                </span>
+              <h2 class="places__title">Камчатка</h2>
+                <button class="places__like-button" type="button" aria-label="Нравится"></button>
             </div>
         </li>
         <li class="places__item">
             <img class="places__img" src="./images/photo-grid-baikal.jpg" alt="Байкал">
             <div class="places__content">
-                <h2 class="places__title">Байкал</h2>
-                <span class="places__like">
-                  <button class="places__like-button" type="button"></button>
-                </span>
+              <h2 class="places__title">Байкал</h2>
+                <button class="places__like-button" type="button" aria-label="Нравится"></button>
             </div>
         </li>
         <li class="places__item">
             <img class="places__img" src="./images/эльбрус.jpg" alt="Эльбрус">
             <div class="places__content">
-                <h2 class="places__title">Эльбрус</h2>
-                <span class="places__like">
-                  <button class="places__like-button" type="button"></button>
-                </span>
+              <h2 class="places__title">Эльбрус</h2>
+                <button class="places__like-button" type="button" aria-label="Нравится"></button>
             </div>
         </li>
     </ul>
@@ -108,10 +95,9 @@
 
 <!-- POPUP: Редактировать профиль --> 
 <div class="popup">
-  <div class="popup__card">
-    <div class="popup__container">
-      <h2 class="popup__title">Редактировать профиль</h2>
-      <form action="#" class="form" name="профиль">
+  <div class="popup__container">
+    <h2 class="popup__title">Редактировать профиль</h2>
+    <form action="#" class="form" name="profile">
         <input
         type="text"
         placeholder="Имя"
@@ -130,10 +116,9 @@
         required
         minlength="2"
         maxlength="30">
-        <button type="submit" class="form__button">Сохранить</button>
-      </form>
-      <button type="button" class="popup__close-button"></button>
-    </div>
+      <button type="submit" class="form__button">Сохранить</button>
+    </form>
+    <button type="button" class="popup__close-button" aria-label="Закрыть"></button>
   </div>
 </div>
 
