@@ -19,7 +19,7 @@
  - JavaScript для интерактивности
  - Работа с формами
 
- Ссылка на проект: https://github.com/Aliya-f/mesto
+ Ссылка на проект: https://aliya-f.github.io/mesto/
 
 ## Что планируется сделать❓
 
