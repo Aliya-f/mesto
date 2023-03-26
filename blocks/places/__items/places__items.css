@@ -1,7 +1,7 @@
 .places__items {
     display: grid;
     gap: 20px 17px;
-    grid-template: repeat(2, 1fr) / repeat(3, 282px);
+    grid-template-columns: repeat(3, 282px);
     justify-content: center;
     list-style-type: none;
     margin: 0;
@@ -11,12 +11,12 @@
   
 @media screen and (max-width: 1024px) {
     .places__items {
-      grid-template: repeat(3, 1fr) / repeat(2, 282px);
+      grid-template-columns: repeat(2, 282px);
     }
 }
 
 @media screen and (max-width: 768px) {
     .places__items {
-      grid-template: repeat(6, 1fr) / 282px;
+      grid-template-columns: 282px;
     }
 }

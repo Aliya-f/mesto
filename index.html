@@ -38,55 +38,21 @@
     <button class="profile__add-button" type="button" aria-label="Добавить"></button>
   </section>
 
-
   <section class="places" aria-label="места">
-    <ul class="places__items">
-        <li class="places__item">
-            <img class="places__img" src="./images/kirill-pershin-1088404-unsplash-1.jpg" alt="Замок Карачаевска">
-            <div class="places__content">
-              <h2 class="places__title">Карачаевск</h2>
-                <button class="places__like-button" type="button" aria-label="Нравится"></button>
-            </div>
-
-        </li>
-        <li class="places__item">
-            <img class="places__img" src="./images/place-karelia.jpg" alt="Карелия">
-            <div class="places__content">
-              <h2 class="places__title">Карелия</h2>
-                <button class="places__like-button" type="button" aria-label="Нравится"></button>
-            </div>
-        </li>
-        <li class="places__item">
-            <img class="places__img" src="./images/photo-grid-sochi.jpg" alt="Сочи">
-            <div class="places__content">
-              <h2 class="places__title">Сочи</h2>
-                <button class="places__like-button" type="button" aria-label="Нравится"></button>
-            </div>
-        </li>
-        <li class="places__item">
-            <img class="places__img" src="./images/photo-grid-kamchatka-2.jpg" alt="Камчатка">
-            <div class="places__content">
-              <h2 class="places__title">Камчатка</h2>
-                <button class="places__like-button" type="button" aria-label="Нравится"></button>
-            </div>
-        </li>
-        <li class="places__item">
-            <img class="places__img" src="./images/photo-grid-baikal.jpg" alt="Байкал">
-            <div class="places__content">
-              <h2 class="places__title">Байкал</h2>
-                <button class="places__like-button" type="button" aria-label="Нравится"></button>
-            </div>
-        </li>
-        <li class="places__item">
-            <img class="places__img" src="./images/эльбрус.jpg" alt="Эльбрус">
-            <div class="places__content">
-              <h2 class="places__title">Эльбрус</h2>
-                <button class="places__like-button" type="button" aria-label="Нравится"></button>
-            </div>
-        </li>
-    </ul>
+    <ul class="places__items"></ul>
   </section>
- 
+  
+  <template id="card">
+        <li class="places__item">
+        <img class="places__img" src="#" alt="#">
+        <div class="places__content">
+          <h2 class="places__title"></h2>
+          <button class="places__like-button" type="button" aria-label="Нравится"></button>
+          <button class="places__delete" type="button" aria-label="Удалить"></button>
+        </div>
+        </li>
+      </template>
+
 </main>
 
 <footer class="footer">
@@ -94,7 +60,8 @@
 </footer>
 
 <!-- POPUP: Редактировать профиль --> 
-<div class="popup">
+
+<div class="popup popup_type_profile">
   <div class="popup__container">
     <h2 class="popup__title">Редактировать профиль</h2>
     <form action="#" class="form" name="profile">
@@ -122,6 +89,46 @@
   </div>
 </div>
 
+<!-- POPUP: добавить фото --> 
+<div class="popup popup_type_cards">
+  <div class="popup__container">
+    <h2 class="popup__title">Новое место</h2>
+    <form method="get" action="#" class="form form-add" name="card">
+        <input
+        type="text"
+        placeholder="Название"
+        class="form__input"
+        name="place"
+        id="place"
+        required
+        minlength="2"
+        maxlength="30">
+        <input
+        type="url"
+        placeholder="Ссылка на картинку"
+        class="form__input"
+        name="link"
+        id="link"
+        required
+        minlength="2"
+        maxlength="100">
+      <button type="submit" class="form__button">Создать</button>
+    </form>
+    <button type="button" class="popup__close-button" aria-label="Закрыть"></button>
+  </div>
+</div>
+
+<!-- POPUP: открыть картинки --> 
+<div class="popup popup_type_open-image">
+  <div class="popup__image-conteiner">
+    <img class="popup__image" src="#" alt="увеличенное изображение">
+    <h2 class="popup__title-card"></h2>
+    <button class="popup__close-button" type="button" aria-label="закрыть"></button>
+  </div>
+</div>
+<script src="./scripts/initial-cards.js">
+</script>
 <script src="./scripts/index.js"></script>
 </body>
 </html>
+
