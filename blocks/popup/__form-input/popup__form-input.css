@@ -1,7 +1,6 @@
 .popup__form-input {
     border: 0;
     border-bottom: 1px solid rgba(0, 0, 0, 0.2);
-    margin-bottom: 30px;
     padding: 0;
     padding-bottom: 12px;
     font-family: 'Inter', Arial, sans-serif;
@@ -11,13 +10,3 @@
     height: 14px;
 }
   
-.popup__form-input:last-of-type {
-    margin-bottom: 48px;
-}
-  
-@media screen and (max-width: 768px) {
-    .popup__form-input:last-of-type {
-      margin-bottom: 45px;
-  
-    }
-}

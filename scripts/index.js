@@ -34,6 +34,7 @@ const buttonClosePopupPhoto = popupOpenImage.querySelector('.popup__close-button
 // открыть и закрыть попап
 const openPopup = function(popup) {
   popup.classList.add('popup_opened')
+  document.addEventListener('keydown', closePopupEsc)
 }
 const closePopup = function(popup) {
   popup.classList.remove('popup_opened')
@@ -123,6 +124,28 @@ function likeActive(el) {
 function likeActive(evt) {
   evt.target.classList.toggle('like-button_type_active')
 }
+
+//закрыть попап через оверлэй
+const closePopupOverlay = () => {
+  const popups = Array.from(document.querySelectorAll('.popup'));
+  popups.forEach(popup => {
+    popup.addEventListener('click', evt => {
+      if (evt.target == evt.currentTarget) {
+        closePopup(popup)
+      }
+    })
+  })
+}
+
+closePopupOverlay()
+
+// закрыть попап через esc
+const closePopupEsc = (evt) => {
+  const activePopup = document.querySelector('.popup_opened')
+      if (evt.code === 'Escape') {
+      closePopup(activePopup)
+      }
+    }
 
 // слушатели:
 // на кнопку Сохранить в профиле
