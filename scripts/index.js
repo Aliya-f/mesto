@@ -8,9 +8,6 @@ const buttonClosePopupProfile = document.querySelector('.popup__close-button')
 /*const saveButton = document.querySelector('.form__button')*/
 const nameInputNew = document.querySelector('.profile__name-text')
 const jobInputNew = document.querySelector('.profile__description')
-nameInput.value = nameInputNew.textContent
-jobInput.value = jobInputNew.textContent
-
 // переменные для второго попап
 const addButton = document.querySelector('.profile__add-button')
 const popupCards = document.querySelector('.popup_type_cards');
@@ -20,11 +17,9 @@ const linkInput = newCardPopupForm.querySelector('#link');
 const submitButton = newCardPopupForm.querySelector('.popup__form-button');
 const buttonClosePopupAdd = popupCards.querySelector('.popup__close-button');
 //переменные для карточек
-const cardTemp = document.querySelector('#card')
+//const cardTemp = document.querySelector('#card')
 const cardTemplate = document.querySelector('#card').content.querySelector('.places__item');
 const placesItems = document.querySelector('.places__items');
-
-
 //переменные для увеличенных фото
 const popupOpenImage = document.querySelector('.popup_type_open-image');
 const popupImageCard = document.querySelector('.popup__image');
@@ -33,21 +28,25 @@ const buttonClosePopupPhoto = popupOpenImage.querySelector('.popup__close-button
 
 // открыть и закрыть попап
 const openPopup = function(popup) {
+  nameInput.value = nameInputNew.textContent
+  jobInput.value = jobInputNew.textContent
   popup.classList.add('popup_opened')
   document.addEventListener('keydown', closePopupEsc)
+  const formButton = popup.querySelector('.popup__form-button')
+  disableButton(formButton, {inactiveButtonClass:validationConfig.inactiveButtonClass, activeButtonClass:validationConfig.activeButtonClass})
 }
 const closePopup = function(popup) {
   popup.classList.remove('popup_opened')
+  document.removeEventListener('keydown', closePopupEsc)
 }
 
-// редактировать профиль
 function handleFormSubmitProfile (evt) {
-    evt.preventDefault(); // Эта строчка отменяет стандартную отправку формы.
-    //элементы, куда должны быть вставлены значения полей
-    nameInputNew.textContent = nameInput.value;
-    jobInputNew.textContent = jobInput.value;
-    // Вставьте новые значения с помощью textContent
-    closePopup(popup)
+  evt.preventDefault(); // Эта строчка отменяет стандартную отправку формы.
+  //элементы, куда должны быть вставлены значения полей
+  nameInputNew.textContent = nameInput.value;
+  jobInputNew.textContent = jobInput.value;
+  // Вставьте новые значения с помощью textContent
+  closePopup(popup)
 }
 
 // создание карточки
@@ -56,31 +55,28 @@ const createCard = (card) => {
   const placesImg = templateElements.querySelector('.places__img');
   const placesTitle = templateElements.querySelector('.places__title');
   //const buttonClosePopupPhoto = popupOpenImage.querySelector('.popup__close-button');
-const likeButton = templateElements.querySelector('.places__like-button');
-const buttonDelete = templateElements.querySelector('.places__delete');
+  const likeButton = templateElements.querySelector('.places__like-button');
+  const buttonDelete = templateElements.querySelector('.places__delete');
   placesImg.src = card.link;
   placesTitle.textContent = card.name;
+  placesImg.alt = card.name;
   
   // слушатель на открыть закрыть фото
   placesImg.addEventListener('click', () => {
-    handleElementsCard(card)
+  handleElementsCard(card)
   });
-  //buttonClosePopupPhoto.addEventListener('click', () => {
-  //closePopup(popupOpenImage);
-  //});
-   //на кнопку лайк
- // likeActive(templateElements) 
- likeButton.addEventListener('click', (evt) => {
-  likeActive(evt)
- });
 
- buttonDelete.addEventListener('click', (evt) => {
+  //на кнопку лайк
+  likeButton.addEventListener('click', (evt) => {
+  likeActive(evt)
+  });
+
+  buttonDelete.addEventListener('click', (evt) => {
   deleteCard(evt)
- });
+  });
 
   return templateElements;
 };  
-
 
 /* открытие картинок*/
 function handleElementsCard(card) {
@@ -115,12 +111,6 @@ const handleFormSubmitCard = (event) => {
    evt.target.closest('.places__item').remove();
 }
 
-/* функция лайка 
-function likeActive(el) {
-  el.querySelector('.places__like-button').addEventListener('click', function (evt) {
-    evt.target.classList.toggle('like-button_type_active')
-  })
-}*/
 function likeActive(evt) {
   evt.target.classList.toggle('like-button_type_active')
 }
@@ -141,11 +131,11 @@ closePopupOverlay()
 
 // закрыть попап через esc
 const closePopupEsc = (evt) => {
-  const activePopup = document.querySelector('.popup_opened')
-      if (evt.code === 'Escape') {
-      closePopup(activePopup)
-      }
-    }
+  if (evt.code === 'Escape') {
+    const activePopup = document.querySelector('.popup_opened')   
+    closePopup(activePopup)
+   }
+}
 
 // слушатели:
 // на кнопку Сохранить в профиле
@@ -170,8 +160,3 @@ buttonClosePopupAdd.addEventListener('click', function() {
 buttonClosePopupPhoto.addEventListener('click', () => {
 closePopup(popupOpenImage);
 });
-
-//на кнопку удалить карточку
-//buttonDelete.addEventListener('click', deleteCard)
-
-console.log();
