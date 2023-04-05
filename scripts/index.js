@@ -42,17 +42,17 @@ function handleFormSubmitProfile (evt) {
   nameInputNew.textContent = nameInput.value;
   jobInputNew.textContent = jobInput.value;
   // Вставьте новые значения с помощью textContent
-  const formButton = popup.querySelector('.popup__form-button')
-  disableButton(formButton, {inactiveButtonClass:validationConfig.inactiveButtonClass, activeButtonClass:validationConfig.activeButtonClass})
+  evt.target.reset();
   closePopup(popup)
 }
 
-const openProfilePopup = function() { 
+const openProfilePopup = function() {
+  const formButton = popup.querySelector('.popup__form-button')
+  disableButton(formButton, {inactiveButtonClass:validationConfig.inactiveButtonClass, activeButtonClass:validationConfig.activeButtonClass})
   nameInput.value = nameInputNew.textContent
   jobInput.value = jobInputNew.textContent
   openPopup(profilePopup);
 }
-
 // создание карточки
 const createCard = (card) => {
   const templateElements = cardTemplate.cloneNode(true);
@@ -64,23 +64,19 @@ const createCard = (card) => {
   placesImg.src = card.link;
   placesTitle.textContent = card.name;
   placesImg.alt = card.name;
-  
-  // слушатель на открыть закрыть фото
+    // слушатель на открыть закрыть фото
   placesImg.addEventListener('click', () => {
   handleElementsCard(card)
   });
-
   //на кнопку лайк
   likeButton.addEventListener('click', (evt) => {
   likeActive(evt)
   });
-
   buttonDelete.addEventListener('click', (evt) => {
   deleteCard(evt)
   });
-
   return templateElements;
-};
+};  
 
 /* открытие картинок*/
 function handleElementsCard(card) {
@@ -107,12 +103,18 @@ const handleFormSubmitCard = (event) => {
     link: linkInput.value,
   });
   event.target.reset();
-  const formButton = popup.querySelector('.popup__form-button')
-  disableButton(formButton, {inactiveButtonClass:validationConfig.inactiveButtonClass, activeButtonClass:validationConfig.activeButtonClass})
   closePopup(popupCards);
 };
 
- // удаление карточки
+const openCardPopup = function() {
+  placeInput.value = "";
+  linkInput.value = "";
+  const formButton = popupCards.querySelector('.popup__form-button')
+  disableButton(formButton, {inactiveButtonClass:validationConfig.inactiveButtonClass, activeButtonClass:validationConfig.activeButtonClass})
+  openPopup(popupCards);
+}
+
+// удаление карточки
  function deleteCard (evt) {
    evt.target.closest('.places__item').remove();
 }
@@ -154,9 +156,7 @@ buttonClosePopupProfile.addEventListener('click', function() {
   closePopup(profilePopup);
 });
 // на кнопку открыть и закрыть второй попап
-addButton.addEventListener('click', function() {
-  openPopup(popupCards);
-});
+addButton.addEventListener('click', openCardPopup);
 buttonClosePopupAdd.addEventListener('click', function() {
   closePopup(popupCards);
 });
