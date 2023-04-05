@@ -49,6 +49,10 @@ function handleFormSubmitProfile (evt) {
 const openProfilePopup = function() {
   const formButton = popup.querySelector('.popup__form-button')
   disableButton(formButton, {inactiveButtonClass:validationConfig.inactiveButtonClass, activeButtonClass:validationConfig.activeButtonClass})
+  const input = popup.querySelectorAll('.popup__form-input')
+  input.forEach(input => {
+      hideInputError(input, validationConfig)
+  })
   nameInput.value = nameInputNew.textContent
   jobInput.value = jobInputNew.textContent
   openPopup(profilePopup);
@@ -109,6 +113,10 @@ const handleFormSubmitCard = (event) => {
 const openCardPopup = function() {
   placeInput.value = "";
   linkInput.value = "";
+  const input = popupCards.querySelectorAll('.popup__form-input')
+  input.forEach(input => {
+      hideInputError(input, validationConfig)
+  })
   const formButton = popupCards.querySelector('.popup__form-button')
   disableButton(formButton, {inactiveButtonClass:validationConfig.inactiveButtonClass, activeButtonClass:validationConfig.activeButtonClass})
   openPopup(popupCards);
