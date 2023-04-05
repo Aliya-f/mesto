@@ -28,12 +28,8 @@ const buttonClosePopupPhoto = popupOpenImage.querySelector('.popup__close-button
 
 // открыть и закрыть попап
 const openPopup = function(popup) {
-  nameInput.value = nameInputNew.textContent
-  jobInput.value = jobInputNew.textContent
   popup.classList.add('popup_opened')
   document.addEventListener('keydown', closePopupEsc)
-  const formButton = popup.querySelector('.popup__form-button')
-  disableButton(formButton, {inactiveButtonClass:validationConfig.inactiveButtonClass, activeButtonClass:validationConfig.activeButtonClass})
 }
 const closePopup = function(popup) {
   popup.classList.remove('popup_opened')
@@ -46,7 +42,15 @@ function handleFormSubmitProfile (evt) {
   nameInputNew.textContent = nameInput.value;
   jobInputNew.textContent = jobInput.value;
   // Вставьте новые значения с помощью textContent
+  const formButton = popup.querySelector('.popup__form-button')
+  disableButton(formButton, {inactiveButtonClass:validationConfig.inactiveButtonClass, activeButtonClass:validationConfig.activeButtonClass})
   closePopup(popup)
+}
+
+const openProfilePopup = function() { 
+  nameInput.value = nameInputNew.textContent
+  jobInput.value = jobInputNew.textContent
+  openPopup(profilePopup);
 }
 
 // создание карточки
@@ -76,7 +80,7 @@ const createCard = (card) => {
   });
 
   return templateElements;
-};  
+};
 
 /* открытие картинок*/
 function handleElementsCard(card) {
@@ -103,6 +107,8 @@ const handleFormSubmitCard = (event) => {
     link: linkInput.value,
   });
   event.target.reset();
+  const formButton = popup.querySelector('.popup__form-button')
+  disableButton(formButton, {inactiveButtonClass:validationConfig.inactiveButtonClass, activeButtonClass:validationConfig.activeButtonClass})
   closePopup(popupCards);
 };
 
@@ -143,9 +149,7 @@ formElement.addEventListener('submit', handleFormSubmitProfile);
 //на кнопку создать
 newCardPopupForm.addEventListener('submit', handleFormSubmitCard);
 // на кнопку открыть и закрыть первый попап
-buttonOpenPopupProfile.addEventListener('click', function() { 
-  openPopup(profilePopup);
-});
+buttonOpenPopupProfile.addEventListener('click', openProfilePopup);
 buttonClosePopupProfile.addEventListener('click', function() {
   closePopup(profilePopup);
 });
