@@ -1,23 +1,25 @@
-const formElement = document.querySelector('.popup__form')
-const popup = document.querySelector('.popup')
 const profilePopup = document.querySelector('.popup_type_profile')
+const profilePopupForm = profilePopup.querySelector('.form-profile')
+const popupProfileInputs = profilePopup.querySelectorAll('.popup__form-input')
+const formButtonProfile = profilePopup.querySelector('.popup__form-button')
 const nameInput = document.querySelector('#name')
 const jobInput = document.querySelector('#job')
 const buttonOpenPopupProfile = document.querySelector('.profile__edit-button')
 const buttonClosePopupProfile = document.querySelector('.popup__close-button')
-/*const saveButton = document.querySelector('.form__button')*/
 const nameInputNew = document.querySelector('.profile__name-text')
 const jobInputNew = document.querySelector('.profile__description')
+
 // переменные для второго попап
 const addButton = document.querySelector('.profile__add-button')
 const popupCards = document.querySelector('.popup_type_cards');
+const popupCardsInputs = popupCards.querySelectorAll('.popup__form-input')
+const formButtonCards = popupCards.querySelector('.popup__form-button')
 const newCardPopupForm = popupCards.querySelector('.form-add');
 const placeInput = newCardPopupForm.querySelector('#place');
 const linkInput = newCardPopupForm.querySelector('#link');
 const submitButton = newCardPopupForm.querySelector('.popup__form-button');
 const buttonClosePopupAdd = popupCards.querySelector('.popup__close-button');
 //переменные для карточек
-//const cardTemp = document.querySelector('#card')
 const cardTemplate = document.querySelector('#card').content.querySelector('.places__item');
 const placesItems = document.querySelector('.places__items');
 //переменные для увеличенных фото
@@ -43,16 +45,12 @@ function handleFormSubmitProfile (evt) {
   jobInputNew.textContent = jobInput.value;
   // Вставьте новые значения с помощью textContent
   evt.target.reset();
-  closePopup(popup)
+  closePopup(profilePopup)
 }
 
 const openProfilePopup = function() {
-  const formButton = popup.querySelector('.popup__form-button')
-  disableButton(formButton, {inactiveButtonClass:validationConfig.inactiveButtonClass, activeButtonClass:validationConfig.activeButtonClass})
-  const input = popup.querySelectorAll('.popup__form-input')
-  input.forEach(input => {
-      hideInputError(input, validationConfig)
-  })
+  disableButton(formButtonProfile, {inactiveButtonClass:validationConfig.inactiveButtonClass, activeButtonClass:validationConfig.activeButtonClass})
+  removeValidationErrors(popupProfileInputs, validationConfig)
   nameInput.value = nameInputNew.textContent
   jobInput.value = jobInputNew.textContent
   openPopup(profilePopup);
@@ -62,7 +60,6 @@ const createCard = (card) => {
   const templateElements = cardTemplate.cloneNode(true);
   const placesImg = templateElements.querySelector('.places__img');
   const placesTitle = templateElements.querySelector('.places__title');
-  //const buttonClosePopupPhoto = popupOpenImage.querySelector('.popup__close-button');
   const likeButton = templateElements.querySelector('.places__like-button');
   const buttonDelete = templateElements.querySelector('.places__delete');
   placesImg.src = card.link;
@@ -91,7 +88,6 @@ function handleElementsCard(card) {
 }
 
 const renderCard = (card) => {
-  //const templateElements = createCard(card);
  placesItems.prepend(createCard(card));
 };
  
@@ -113,12 +109,8 @@ const handleFormSubmitCard = (event) => {
 const openCardPopup = function() {
   placeInput.value = "";
   linkInput.value = "";
-  const input = popupCards.querySelectorAll('.popup__form-input')
-  input.forEach(input => {
-      hideInputError(input, validationConfig)
-  })
-  const formButton = popupCards.querySelector('.popup__form-button')
-  disableButton(formButton, {inactiveButtonClass:validationConfig.inactiveButtonClass, activeButtonClass:validationConfig.activeButtonClass})
+  removeValidationErrors(popupCardsInputs, validationConfig)
+  disableButton(formButtonCards, {inactiveButtonClass:validationConfig.inactiveButtonClass, activeButtonClass:validationConfig.activeButtonClass})
   openPopup(popupCards);
 }
 
@@ -155,7 +147,7 @@ const closePopupEsc = (evt) => {
 
 // слушатели:
 // на кнопку Сохранить в профиле
-formElement.addEventListener('submit', handleFormSubmitProfile); 
+profilePopupForm.addEventListener('submit', handleFormSubmitProfile); 
 //на кнопку создать
 newCardPopupForm.addEventListener('submit', handleFormSubmitCard);
 // на кнопку открыть и закрыть первый попап

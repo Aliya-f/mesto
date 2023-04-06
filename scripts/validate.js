@@ -57,6 +57,12 @@ function showInputError(input, validationConfig) {
     currentInputErrorContainer.textContent = '';
     input.classList.remove(validationConfig.inputErrorClass)
   }
+
+  const removeValidationErrors = function(inputs, validationConfig) {
+    inputs.forEach(input => {
+      hideInputError(input, validationConfig)
+  })
+  }
   
 // есть ли в форме невалидное поле
 const hasInvalidInput = (formInputs) => {
