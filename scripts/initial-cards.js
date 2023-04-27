@@ -1,5 +1,5 @@
 //карточки 
-const initialCards = [
+export const initialCards = [
     {
       name: 'Карачаевск',
       link: './images/kirill-pershin-1088404-unsplash-1.jpg'

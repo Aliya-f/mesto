@@ -1,15 +1,15 @@
 .popup__form-button {
     padding: 0;
-    
     height: 50px;
-    
     border-radius: 2px;
     font-family: 'Inter', Arial, sans-serif;
     font-size: 18px;
     line-height: 22px;
     font-weight: 400;
     text-align: center;
-    
+    color: #FFFFFF;
+    background: #000000;
+    border: 0;
 }
     
 .popup__form-button:hover {
