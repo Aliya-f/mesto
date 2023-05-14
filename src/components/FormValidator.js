@@ -6,7 +6,6 @@ export class FormValidator {
       this._inactiveButtonClass = validationConfig.inactiveButtonClass;
       this._inputErrorClass = validationConfig.inputErrorClass;
       this._form = form;
-      
     } 
 
     enableValidation() {

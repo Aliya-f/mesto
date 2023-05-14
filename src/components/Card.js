@@ -1,10 +1,11 @@
-import {handleElementsCard} from './index.js'
+// import {handleElementsCard} from './index.js'
 export class Card {
-  constructor (initialCards, cardTemplate) {
+  constructor (initialCards, cardTemplate, openCard) {
     this._initialCards = initialCards;
     this._name = initialCards.name;
     this._link = initialCards.link;
     this._cardTemplate = cardTemplate;
+    this._openCard = openCard;
    }
   _getTemplate() {
     const cardElement = this._cardTemplate.cloneNode(true)
@@ -28,19 +29,20 @@ export class Card {
   _likeActive() {
     this._likeButton.classList.toggle('like-button_type_active')
   }
-  _handleOpenPopupImage = () => {
-    handleElementsCard({name: this._name,
-      link: this._link})
-  }
+  // _handleOpenPopupImage = () => {
+  //   handleElementsCard({name: this._name,
+  //     link: this._link})
+  // }
   _setEventListeners() {
     //слушатель на открыть закрыть фото
     this._cardImage.addEventListener('click', () => {
-      this._handleOpenPopupImage()
+      this._openCard(this._name, this._link)
     });
     //на кнопку лайк
     this._likeButton.addEventListener('click', () => {
       this._likeActive()
     });
+    //удалить карточку
     this._deleteButton.addEventListener('click', () => {
       this._deleteCard()
     });
