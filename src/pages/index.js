@@ -1,5 +1,5 @@
 import './index.css'
-import {validationConfig} from '../utils/validate.js'
+import {validationConfig} from '../utils/validationConfig.js'
 import {initialCards} from '../utils/initial-cards.js'
 import {Card} from '../components/Card.js';
 import {FormValidator} from '../components/FormValidator.js';
@@ -15,11 +15,9 @@ const jobInput = document.querySelector('#job')
 const buttonOpenPopupProfile = document.querySelector('.profile__edit-button')
 
 // переменные для второго попап
-const addButton = document.querySelector('.profile__add-button')
+const buttonAddCard = document.querySelector('.profile__add-button')
 const popupCards = document.querySelector('.popup_type_cards');
 const newCardPopupForm = popupCards.querySelector('.form-add');
-const placeInput = newCardPopupForm.querySelector('#place');
-const linkInput = newCardPopupForm.querySelector('#link');
 
 //переменные для карточек
 const cardTemplate = document.querySelector('#card').content.querySelector('.places__item');
@@ -28,10 +26,10 @@ const placesItems = document.querySelector('.places__items');
 const popupOpenImage = document.querySelector('.popup_type_open-image');
 
 const profileFormValidator = new FormValidator(validationConfig, profilePopupForm);
-const addFormValidator = new FormValidator(validationConfig, newCardPopupForm);
+const cardFormValidator = new FormValidator(validationConfig, newCardPopupForm);
 
 profileFormValidator.enableValidation();
-addFormValidator.enableValidation();
+cardFormValidator.enableValidation();
 
 const section = new Section({
   items: initialCards,
@@ -65,39 +63,31 @@ const openProfilePopup = () => {
 }
 // попап добавления карточек
 const popupAddCard = new PopupWithForm(popupCards, () => {
-  const newCard = new Card({name: placeInput.value, link: linkInput.value}, cardTemplate, (name, link) => {
-    imagePopup.openPopup({name, link})
-  })
-const cardElement = newCard.generateCard()
-section.addItem(cardElement)
-}
-)
+  section.addItem(createCard(item))
+})
+
 popupAddCard.setEventListeners(); 
 
 //попап с картинкой
 const imagePopup = new PopupWithImage(popupOpenImage);
 imagePopup.setEventListeners();
+
 function openCard(name, link) {
   imagePopup.openPopup(name, link)
+  console.log(name)
 }
+
+// функция создания карточек
 const createCard = (item) => {
   const newCard = new Card(item, cardTemplate, openCard);
   const cardElement = newCard.generateCard();
   return cardElement;
 }
-const renderCard = (card) => {
- placesItems.prepend(createCard(card));
-};
 
-initialCards.forEach((card) => {
-  renderCard(card);
-});
-
+// открыть форму добавления карточек
 const openCardPopup = function() {
-  placeInput.value = "";
-  linkInput.value = "";
-  addFormValidator.removeValidationErrors();
-  addFormValidator.disableButton();
+  cardFormValidator.removeValidationErrors();
+  cardFormValidator.disableButton();
   popupAddCard.openPopup();
 }
 
@@ -105,4 +95,4 @@ const openCardPopup = function() {
 // на кнопку открыть и закрыть первый попап
 buttonOpenPopupProfile.addEventListener('click', openProfilePopup);
 // на кнопку открыть и закрыть второй попап
-addButton.addEventListener('click', openCardPopup);
+buttonAddCard.addEventListener('click', openCardPopup);
