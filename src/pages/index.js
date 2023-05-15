@@ -74,7 +74,7 @@ imagePopup.setEventListeners();
 
 function openCard(name, link) {
   imagePopup.openPopup(name, link)
-  console.log(name)
+  console.log(link)
 }
 
 // функция создания карточек
