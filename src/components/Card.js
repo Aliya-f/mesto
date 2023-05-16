@@ -1,5 +1,6 @@
 export class Card {
   constructor (cardData, cardTemplate, openCard) {
+    this._cardData = cardData;
     this._name = cardData.name;
     this._link = cardData.link;
     this._cardTemplate = cardTemplate;
@@ -23,8 +24,8 @@ export class Card {
   }
   _deleteCard () {
     this._card.remove();
-    this._card = null;
   }
+  
   _likeActive() {
     this._buttonLike.classList.toggle('like-button_type_active')
   }

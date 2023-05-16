@@ -18,6 +18,8 @@ const buttonOpenPopupProfile = document.querySelector('.profile__edit-button')
 const buttonAddCard = document.querySelector('.profile__add-button')
 const popupCards = document.querySelector('.popup_type_cards');
 const newCardPopupForm = popupCards.querySelector('.form-add');
+const placeInput = newCardPopupForm.querySelector('#place');
+const linkInput = newCardPopupForm.querySelector('#link');
 
 //переменные для карточек
 const cardTemplate = document.querySelector('#card').content.querySelector('.places__item');
@@ -40,7 +42,7 @@ const section = new Section({
 }, placesItems)
 
 //данные профиля
-const userInfo = new UserInfo({nameInputNew: '.profile__name-text', jobInputNew: '.profile__description'})
+const userInfo = new UserInfo({nameInputSelector: '.profile__name-text', jobInputSelector: '.profile__description'})
 
 // редактировать профиль
 const editUserInfo = (data) => {
@@ -61,9 +63,13 @@ const openProfilePopup = () => {
   jobInput.value = job;
   popupProfile.openPopup()
 }
+
 // попап добавления карточек
-const popupAddCard = new PopupWithForm(popupCards, () => {
-  section.addItem(createCard(item))
+const popupAddCard = new PopupWithForm(popupCards, (data) => {
+  console.log(data)
+  //const newCard = new Card({name: placeInput.value, link: linkInput.value}, cardTemplate, openCard)
+  //const cardElement = newCard.generateCard()
+  section.addItem(createCard(data))
 })
 
 popupAddCard.setEventListeners(); 
@@ -73,8 +79,7 @@ const imagePopup = new PopupWithImage(popupOpenImage);
 imagePopup.setEventListeners();
 
 function openCard(name, link) {
-  imagePopup.openPopup(name, link)
-  console.log(link)
+  imagePopup.openPopup({name, link})
 }
 
 // функция создания карточек
@@ -83,6 +88,7 @@ const createCard = (item) => {
   const cardElement = newCard.generateCard();
   return cardElement;
 }
+section.renderItems()
 
 // открыть форму добавления карточек
 const openCardPopup = function() {
