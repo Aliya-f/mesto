@@ -19,11 +19,11 @@
   <section class="profile">
     <div class="profile__card">
 
-
-      <img src="<%=require('./images/image.jpg')%>"
+      <div class="profile__image">
+        <img src="<%=require('./images/image.jpg')%>"
         alt="Фото профиля."
         class="profile__photo">
-
+      </div>
 
       <div class="profile__info">
         <div class="profile__name">
@@ -58,8 +58,28 @@
   <p class="footer__copyright">&copy; 2023 Mesto Russia</p>
 </footer>
 
-<!-- POPUP: Редактировать профиль --> 
+<!-- POPUP: Сменить аватар --> 
+<div class="popup popup_type_avatar">
+  <div class="popup__container">
+    <h2 class="popup__title">Обновить аватар</h2>
+    <form action="#" class="popup__form form-avatar" name="avatar" novalidate>
+        <input
+        type="url"
+        placeholder="Ссылка на фото"
+        class="popup__form-input"
+        name="name"
+        id="photo"
+        required
+        minlength="2"
+        maxlength="200">
+        <span class="popup__error-visible" id="photo-error"></span>
+      <button type="submit" class="popup__form-button">Сохранить</button>
+    </form>
+    <button type="button" class="popup__close-button" aria-label="Закрыть"></button>
+  </div>
+</div>
 
+<!-- POPUP: Редактировать профиль --> 
 <div class="popup popup_type_profile">
   <div class="popup__container">
     <h2 class="popup__title">Редактировать профиль</h2>
@@ -78,12 +98,12 @@
         type="text"
         placeholder="О себе"
         class="popup__form-input"
-        name="job"
-        id="job"
+        name="about"
+        id="about"
         required
         minlength="2"
         maxlength="200">
-        <span class="popup__error-visible" id="job-error"></span>
+        <span class="popup__error-visible" id="about-error"></span>
       <button type="submit" class="popup__form-button">Сохранить</button>
     </form>
     <button type="button" class="popup__close-button" aria-label="Закрыть"></button>
@@ -115,6 +135,17 @@
         <span class="popup__error-visible" id="link-error"></span>
       <button type="submit" class="popup__form-button">Создать</button>
     </form>
+    <button type="button" class="popup__close-button" aria-label="Закрыть"></button>
+  </div>
+</div>
+
+<!-- POPUP: Удалить карточку --> 
+<div class="popup popup_type_delete-card">
+  <div class="popup__container">
+    <h2 class="popup__title">Вы уверены?</h2>
+    <form method="get" action="#" class="popup__form form-delete" name="card" novalidate>
+      <button type="submit" class="popup__form-button">Да</button>
+    </form>      
     <button type="button" class="popup__close-button" aria-label="Закрыть"></button>
   </div>
 </div>

@@ -1,14 +1,23 @@
 export class Card {
-  constructor (cardData, cardTemplate, openCard) {
+  constructor ({cardData, handleDeleteClick, openCard}, usertId, cardTemplate) {
     this._cardData = cardData;
     this._name = cardData.name;
     this._link = cardData.link;
     this._cardTemplate = cardTemplate;
     this._openCard = openCard;
-   }
+    this._handleDeleteClick = handleDeleteClick;
+    this._id = cardData._id;    
+    this._usertId = usertId;
+    this._ownerId = cardData._owner._id;
+  }
   _getTemplate() {
     const cardElement = this._cardTemplate.cloneNode(true)
     return cardElement;
+  }
+  _getView() {
+    if (this._ownerId === this._usertId) {
+      this._card.querySelector('.places__delete').classList.add('places__delete_show');
+    }
   }
   generateCard() {
     this._card = this._getTemplate()
@@ -20,10 +29,12 @@ export class Card {
     this._cardImage.src = this._link
     this._cardTitle.textContent = this._name
     this._setEventListeners();
+    this._getView();
     return this._card
   }
-  _deleteCard () {
+  delete() {
     this._card.remove();
+    this._card = null;
   }
   
   _likeActive() {
@@ -39,9 +50,9 @@ export class Card {
     this._buttonLike.addEventListener('click', () => {
       this._likeActive()
     });
-    //удалить карточку
+    //попап удалить карточку
     this._buttonDelete.addEventListener('click', () => {
-      this._deleteCard()
+      this._handleDeleteClick()
     });
-  }
+   }
   }
