@@ -46,7 +46,10 @@
         <img class="places__img" src="#" alt="#">
         <div class="places__content">
           <h2 class="places__title"></h2>
-          <button class="places__like-button" type="button" aria-label="Нравится"></button>
+          <div class="places__like-container">
+            <button class="places__like-button" type="button" aria-label="Нравится"></button>
+            <p class="places__like-quantity">0</p>
+          </div>  
           <button class="places__delete" type="button" aria-label="Удалить"></button>
         </div>
         </li>
@@ -67,12 +70,12 @@
         type="url"
         placeholder="Ссылка на фото"
         class="popup__form-input"
-        name="name"
-        id="photo"
+        name="avatar"
+        id="avatar"
         required
         minlength="2"
         maxlength="200">
-        <span class="popup__error-visible" id="photo-error"></span>
+        <span class="popup__error-visible" id="avatar-error"></span>
       <button type="submit" class="popup__form-button">Сохранить</button>
     </form>
     <button type="button" class="popup__close-button" aria-label="Закрыть"></button>

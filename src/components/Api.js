@@ -42,6 +42,7 @@ export class Api {
     .then(this._response)
   }
 
+  // редактирование данных профиля
   getUserInfo() {
     return fetch(`${this.baseUrl}/users/me`, {
       headers: this.headers
@@ -55,11 +56,38 @@ export class Api {
       headers: this.headers,
       body: JSON.stringify({
         name: item.name,
-        job: item.job
+        about: item.about
       })
     })
     .then(this._response)
-}
+  }
 
+  // лайк
+  likeCard(id) {
+    return fetch(`${this.baseUrl}/cards/${id}/likes`, {
+      method: 'PUT',
+      headers: this.headers,
+    })
+    .then(this._response)
+  }
+
+  dislikeCard(id) {
+    return fetch(`${this.baseUrl}/cards/${id}/likes`, {
+      method: 'DELETE',
+      headers: this.headers,
+    })
+    .then(this._response)
+  }
  
+  // аватар
+  setAvatar(data) {
+    return fetch(`${this.baseUrl}/users/me/avatar`, {
+      method: 'PATCH',
+      headers: this.headers,
+      body: JSON.stringify({
+        avatar: data.avatar,
+      }),
+    })
+    .then(this._response)
+  }
 }

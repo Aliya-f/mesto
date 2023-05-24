@@ -11,14 +11,3 @@
     opacity: 0.5;
 }
     
-/* закрасить сердечко черным
-.places__like-button:active {
-    background: url(../../../images/like_active.svg);
-    opacity: 1;
-}
-   или присвоить класс через js
-.like-button_type_active {
-    background: url(../../../images/like_active.svg);
-    opacity: 1;
-}
-*/
