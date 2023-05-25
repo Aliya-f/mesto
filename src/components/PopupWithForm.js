@@ -17,7 +17,7 @@ export class PopupWithForm extends Popup {
         return this._inputValues
     }
 
-    functionPreloader(isLoading, loadingText) {
+    renderLoading(isLoading, loadingText) {
         if (!this._buttonSubmit) return;
         if (isLoading) {
           this.defaulText = this._buttonSubmit.textContent;
@@ -32,12 +32,7 @@ export class PopupWithForm extends Popup {
         this._popup.addEventListener('submit', (e) => {
             e.preventDefault();
             this._handleFormSubmit(this._getInputValues());
-            this.closePopup()
         })
-    }
-
-    openPopup() {
-        super.openPopup()
     }
 
     closePopup() {

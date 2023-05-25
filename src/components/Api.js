@@ -4,7 +4,7 @@ export class Api {
     this.headers = options.headers;
   }
 
-  _response(res) {
+  _checkResponse(res) {
     if (res.ok) {
       return res.json();
     }
@@ -17,7 +17,7 @@ export class Api {
       method: 'GET',
       headers: this.headers,
     })
-    .then(this._response)
+    .then(this._checkResponse)
   }
 
   // добавление карточки
@@ -30,7 +30,7 @@ export class Api {
         link: newCard.link,
       })
     })
-    .then(this._response)
+    .then(this._checkResponse)
 }
     
   // удаление карточки
@@ -39,7 +39,7 @@ export class Api {
       method: 'DELETE',
       headers: this.headers,
     })
-    .then(this._response)
+    .then(this._checkResponse)
   }
 
   // редактирование данных профиля
@@ -47,7 +47,7 @@ export class Api {
     return fetch(`${this.baseUrl}/users/me`, {
       headers: this.headers
     })
-    .then(this._response)
+    .then(this._checkResponse)
   }
 
   setUserInfo(item) {
@@ -59,7 +59,7 @@ export class Api {
         about: item.about
       })
     })
-    .then(this._response)
+    .then(this._checkResponse)
   }
 
   // лайк
@@ -68,7 +68,7 @@ export class Api {
       method: 'PUT',
       headers: this.headers,
     })
-    .then(this._response)
+    .then(this._checkResponse)
   }
 
   dislikeCard(id) {
@@ -76,7 +76,7 @@ export class Api {
       method: 'DELETE',
       headers: this.headers,
     })
-    .then(this._response)
+    .then(this._checkResponse)
   }
  
   // аватар
@@ -88,6 +88,6 @@ export class Api {
         avatar: data.avatar,
       }),
     })
-    .then(this._response)
+    .then(this._checkResponse)
   }
 }

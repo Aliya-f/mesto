@@ -28,6 +28,7 @@ export class Card {
     this._cardTitle = this._card.querySelector('.places__title');
     this._buttonLike = this._card.querySelector('.places__like-button');
     this._buttonDelete = this._card.querySelector('.places__delete');
+    this._counterLike = this._card.querySelector('.places__like-quantity')
     this._cardImage.alt = this._name;
     this._cardImage.src = this._link;
     this._cardTitle.textContent = this._name;
@@ -43,7 +44,7 @@ export class Card {
   }
  
   _drawLikesContainer() {
-    this._card.querySelector('.places__like-quantity').textContent = this._likes.length; // проставляется количество лайков
+    this._counterLike.textContent = this._likes.length; // проставляется количество лайков
     // если мой лайк есть, то сердечко черное
     if (this._cardLiked()) {
       this._buttonLike.classList.add('like-button_type_active');

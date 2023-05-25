@@ -63,7 +63,7 @@ const userInfo = new UserInfo({nameInputSelector: '.profile__name-text', jobInpu
 
 // редактировать профиль
 const editUserInfo = (data) => {
-  popupProfile.functionPreloader(true, 'Сохранение...')
+  popupProfile.renderLoading(true, 'Сохранение...')
   api.setUserInfo(data)
   .then((data) => {
     userInfo.setUserInfo({
@@ -76,7 +76,7 @@ const editUserInfo = (data) => {
     console.log(`${err}`);
   })
   .finally(() => 
-  popupProfile.functionPreloader(false))
+  popupProfile.renderLoading(false))
 }
 // попап редактирования профиля
 const popupProfile = new PopupWithForm(profilePopup, editUserInfo)
@@ -93,7 +93,7 @@ const openProfilePopup = () => {
 
 // попап добавления карточек
 const popupAddCard = new PopupWithForm(popupCards, (data) => {
-popupAddCard.functionPreloader(true, 'Создание...')
+popupAddCard.renderLoading(true, 'Создание...')
   api.createCard(data)
   .then((res) => {
     createCard(res);
@@ -103,7 +103,7 @@ popupAddCard.functionPreloader(true, 'Создание...')
     console.log(`${err}`);
   })
   .finally(() => 
-  popupAddCard.functionPreloader(false))
+  popupAddCard.renderLoading(false))
 })
 popupAddCard.setEventListeners(); 
 
@@ -133,7 +133,8 @@ function handleDeleteCard(card) {
 }
 
 // функция создания карточек
-const createCard = (item) => {
+function getCard(item) {
+  // создание и return карточки
   const newCard = new Card({
     cardData: item, 
     handleLike: () => {
@@ -156,8 +157,12 @@ const createCard = (item) => {
     }, 
     usertId, 
     cardTemplate);
-  const cardElement = newCard.generateCard();
-  section.addItem(cardElement);
+  return newCard.generateCard()
+}
+
+const createCard = (item) => {
+  const newCard = getCard(item);
+  section.addItem(newCard);
 }
 
 // открыть форму добавления карточек
@@ -169,7 +174,7 @@ const openCardPopup = function() {
 
 // попап смены авы
 const popupAvatar = new PopupWithForm(popupAvatarEdit, (item) => {
-  popupAvatar.functionPreloader(true, 'Сохранение...')
+  popupAvatar.renderLoading(true, 'Сохранение...')
   api.setAvatar(item)
   .then((res) => {
     userInfo.setAvatar(res);
@@ -179,7 +184,7 @@ const popupAvatar = new PopupWithForm(popupAvatarEdit, (item) => {
     console.log(`${err}`)
 })
 .finally(() => 
-popupAvatar.functionPreloader(false))
+popupAvatar.renderLoading(false))
 })
 popupAvatar.setEventListeners();
 
@@ -199,7 +204,6 @@ buttonAvatarEdit.addEventListener('click', openAvatarPopup);
 
 Promise.all([api.getInitialCards(), api.getUserInfo()])
   .then(([cards, userData]) => {
-    userInfo.getUserInfo(userData);
     userInfo.setUserInfo(userData);
     userInfo.setAvatar(userData);
     usertId = userData._id;
